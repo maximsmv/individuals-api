@@ -30,17 +30,20 @@ services:
       - KC_DB_PASSWORD=password
       - KC_HTTP_PORT=8081
       - KC_HTTPS_PORT=8443
-    command: start-dev
+      - KC_HEALTH_ENABLED=true
+      - KEYCLOAK_IMPORT=/opt/keycloak/data/import/my-realm-realm.json
+    command: start-dev --import-realm
     volumes:
       - keycloak_data:/opt/keycloak/data
+      - ./keycloak/import:/opt/keycloak/data/import
     depends_on:
       postgres:
         condition: service_healthy
     healthcheck:
-      test: [ "CMD", "/opt/keycloak/bin/kc.sh", "status" ]
-      interval: 30s
+      test: ['CMD-SHELL', '[ -f /tmp/HealthCheck.java ] || echo "public class HealthCheck { public static void main(String[] args) throws java.lang.Throwable { System.exit(java.net.HttpURLConnection.HTTP_OK == ((java.net.HttpURLConnection)new java.net.URL(args[0]).openConnection()).getResponseCode() ? 0 : 1); } }" > /tmp/HealthCheck.java && java /tmp/HealthCheck.java http://localhost:9000/health/live']
+      interval: 10s
       timeout: 10s
-      retries: 5
+      retries: 6
     networks:
       - app-network
 

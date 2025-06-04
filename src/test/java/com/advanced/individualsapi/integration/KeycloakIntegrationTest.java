@@ -1,11 +1,11 @@
 package com.advanced.individualsapi.integration;
 
-import com.advanced.individualsapi.configuration.WebTestClientConfiguration;
-import com.advanced.individualsapi.controller.AuthController;
-import com.advanced.individualsapi.controller.GlobalExceptionHandler;
 import com.advanced.individualsapi.dto.*;
 import com.advanced.individualsapi.exception.*;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +26,8 @@ import reactor.test.StepVerifier;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(properties = {"server.port=0"})
