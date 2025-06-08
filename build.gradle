@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.advanced'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 description = 'Individuals API'
 
 java {
@@ -42,7 +42,6 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 	testImplementation 'org.springframework.security:spring-security-test'
-//	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	testImplementation 'org.mockito:mockito-core'
 	testImplementation 'org.testcontainers:testcontainers'
 	testImplementation "org.testcontainers:junit-jupiter:${testcontainersVersion}"

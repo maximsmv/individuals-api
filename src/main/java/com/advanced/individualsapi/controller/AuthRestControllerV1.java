@@ -3,19 +3,17 @@ package com.advanced.individualsapi.controller;
 import com.advanced.individualsapi.dto.*;
 import com.advanced.individualsapi.service.UserService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/v1/auth")
-public class AuthController {
+public class AuthRestControllerV1 {
 
     private final UserService userService;
-
-    public AuthController(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
